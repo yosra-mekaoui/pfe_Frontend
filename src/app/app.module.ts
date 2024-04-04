@@ -9,10 +9,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { SigninComponent } from './signin/signin.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, BodyComponent, SidenavComponent, DashboardComponent, FooterComponent, HomeComponent, HeaderComponent, SigninComponent],
+  declarations: [AppComponent, BodyComponent, SidenavComponent, DashboardComponent, FooterComponent, HomeComponent, HeaderComponent, LoginComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
