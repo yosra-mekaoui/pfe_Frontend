@@ -5,6 +5,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { ShellComponent } from './shared/components/shell/shell.component';
 
 const routes: Routes = [
+  {path:'login',component:LoginComponent},
   { path: 'login', component: LoginComponent,pathMatch: 'full' },
   {
     path: '', component: ShellComponent,

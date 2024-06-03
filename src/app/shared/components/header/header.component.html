@@ -142,7 +142,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img src="/assets/images/yosra.jpg" alt="user" class="rounded-circle" width="40">
+                            <img src="/assets/images/YOSRA.jpg" alt="user" class="rounded-circle" width="40">
                             <span class="ml-2 d-none d-lg-inline-block"><span>{{HelloMessage}}</span> <span class="text-dark">{{UserName}}</span>
                                 <i data-feather="chevron-down" class="svg-icon"></i></span>
                         </a>
@@ -287,4 +287,29 @@
         </div>
         <!-- End Sidebar scroll-->
     </aside>
+    <!-- <aside class="left-sidebar" data-sidebarbg="skin6">
+        <div class="scroll-sidebar" data-sidebarbg="skin6">
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <ng-container *ngFor="let item of sidebarItems">
+                        <li class="sidebar-item" *ngIf="!item.children">
+                            <a class="sidebar-link sidebar-link" [routerLink]="item.link" aria-expanded="false">
+                                <i class="feather-icon" [class]="item.icon"></i><span class="hide-menu">{{ item.label }}</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item" *ngIf="item.children">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                <i class="feather-icon" [class]="item.icon"></i><span class="hide-menu">{{ item.label }}</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item" *ngFor="let child of item.children">
+                                    <a [routerLink]="child.link" class="sidebar-link"><span class="hide-menu">{{ child.label }}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ng-container>
+                </ul>
+            </nav>
+        </div>
+    </aside> -->
 </div>
