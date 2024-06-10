@@ -6,7 +6,7 @@
       <div class="login-content">
         <form (ngSubmit)="onSubmit()">
             <input type="email" id="email" placeholder="your email" [(ngModel)]="email" name="email" required>
-            <input type="password" id="password" placeholder="your password" name="password" required>
+            <input type="password" id="password" placeholder="your password" [(ngModel)]="password" name="password" required>
           <button type="submit"> {{connectButtonText}}</button>
         </form>
       </div>

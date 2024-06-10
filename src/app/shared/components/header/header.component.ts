@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  constructor(private authService: AuthService) {}
+  
+  isUserAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
 
   DeloitteTitle = 'Deloitte';
   LuanchAdminTitle = 'Luanch Admin';
@@ -27,7 +38,6 @@ export class HeaderComponent {
   MyBalanceB = 'My Balance';  
   InboxB = 'Inbox';
   AccountSettingB = 'Account Setting';
-  LogoutB = 'Logout';
   ViewProfileB = 'View Profile';
   DashboardB = 'Dashboard';
   ApplicationsB = 'Applications';
@@ -48,36 +58,5 @@ export class HeaderComponent {
   RegisterB = 'Register';
   ExtraB = 'Extra';
   LogoutB2 = 'Logout';
-  // sidebarItems = [
-  //   { label: 'Dashboard', icon: 'home', link: 'index.html' },
-  //   { label: 'Télétravail', icon: 'tag', link: '/' },
-  //   { label: 'Congés', icon: 'tag', link: '/' },
-  //   { label: 'Projets', icon: 'tag', link: '/' },
-  //   { label: 'Tâches', icon: 'tag', link: '/' },
-  //   { label: 'Notifications', icon: 'grid', children: [
-  //       { label: 'Notif 1', link: 'table-basic.html' },
-  //       { label: 'Notif 2', link: 'table-dark-basic.html' }
-  //     ]
-  //   },
-  //   { label: 'Charts', icon: 'bar-chart', children: [
-  //       { label: 'Chart Js 1', link: 'chart-chart-js.html' },
-  //       { label: 'Chart Js 2', link: 'chart-knob.html' }
-  //     ]
-  //   },
-  //   { label: 'Cards', icon: 'sidebar', link: 'ui-cards.html' },
-  //   { label: 'Authentication', children: [
-  //       { label: 'Login', icon: 'lock', link: '/login' },
-  //       { label: 'Register', icon: 'lock', link: 'authentication-register1.html' },
-  //       { label: 'Logout', icon: 'log-out', link: 'authentication-login1.html' }
-  //     ]
-  //   }
-  // ];
-
-
-
-
-    constructor() { }
-  
-   
 
 }

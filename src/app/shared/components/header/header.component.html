@@ -1,4 +1,4 @@
-<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+<div *ngIf="isUserAuthenticated()" id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
     <header class="topbar" data-navbarbg="skin6">
         <nav class="navbar top-navbar navbar-expand-md">
@@ -161,11 +161,11 @@
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{AccountSettingB}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
+                            <a class="dropdown-item" ><i data-feather="power"
                                     class="svg-icon mr-2 ml-1"></i>
-                                {{LogoutB}}</a>
+                                   Logout aa</a>
                             <div class="dropdown-divider"></div>
-                            <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">{{ViewProfileB}}</a></div>
+                            <div class="pl-4 p-3"><a class="btn btn-sm btn-info">{{ViewProfileB}}</a></div>
                         </div>
                     </li>
                     <!-- ============================================================== -->
@@ -278,7 +278,7 @@
                    
                     <li class="list-divider"></li>
                     <li class="nav-small-cap"><span class="hide-menu">{{ExtraB}}</span></li>
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" (click)="logout()"
                             aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
                                 class="hide-menu">{{LogoutB2}}</span></a></li>
                 </ul>
