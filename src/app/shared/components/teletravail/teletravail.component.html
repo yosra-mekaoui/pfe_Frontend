@@ -1,0 +1,43 @@
+<div class="teletravail-container">
+    <h1>Demande de Télétravail</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="teletravailForm">
+      <div class="form-group">
+        <label for="StartDate">Date de début</label>
+        <input id="StartDate" type="date" formControlName="StartDate" required />
+      </div>
+      <div class="form-group">
+        <label for="EndDate">Date de fin</label>
+        <input id="EndDate" type="date" formControlName="EndDate" required />
+      </div>
+      <div class="form-group">
+        <label for="Reason">Reason</label>
+        <input id="Reason" type="text" formControlName="Reason" required />
+      </div>
+      <button type="submit" [disabled]="teletravailForm.invalid">Envoyer</button>
+    </form>
+  </div>
+    <div class="tableau">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teletravail of teletravails">
+        <td>{{ teletravail.StartDate | date }}</td>
+        <td>{{ teletravail.EndDate | date }}</td>
+        <td>{{ teletravail.Reason }}</td>
+        <td>{{ teletravail.Status }}</td>
+        <td>
+            <i *ngIf="teletravail._id" class="fas fa-edit" (click)="editTeletravail(teletravail)"></i>
+            <i *ngIf="teletravail._id" class="fas fa-trash" (click)="deleteTeletravail(teletravail._id)"></i>
+          </td>  
+      </tr>
+    </tbody>
+  </table>
+  

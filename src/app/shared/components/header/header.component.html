@@ -4,14 +4,14 @@
         <nav class="navbar top-navbar navbar-expand-md">
             <div class="navbar-header" data-logobg="skin6">
                 <!-- This is for the sidebar toggle which is visible on mobile only -->
-                <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                <a class="nav-toggler waves-effect waves-light d-block d-md-none" routerLink=""><i
                         class="ti-menu ti-close"></i></a>
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-brand">
                     <!-- Logo icon -->
-                    <a href="index.html">
+                    <a routerLink="index.html">
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
                             <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -31,7 +31,7 @@
                     <!-- ============================================================== -->
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" routerLink=""
                         data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
             </div>
@@ -45,7 +45,7 @@
                 <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
                     <!-- Notification -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)" id="bell"
+                        <a class="nav-link dropdown-toggle pl-md-3 position-relative" routerLink="" id="bell"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span><i data-feather="bell" class="svg-icon"></i></span>
                             <span class="badge badge-primary notify-no rounded-circle">5</span>
@@ -55,7 +55,7 @@
                                 <li>
                                     <div class="message-center notifications position-relative">
                                         <!-- Message -->
-                                        <a href="javascript:void(0)"
+                                        <a routerLink=""
                                             class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                             <div class="btn btn-danger rounded-circle btn-circle"><i data-feather="airplay"
                                                     class="text-white"></i></div>
@@ -66,7 +66,7 @@
                                             </div>
                                         </a>
                                         <!-- Message -->
-                                        <a href="javascript:void(0)"
+                                        <a routerLink=""
                                             class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                             <span class="btn btn-success text-white rounded-circle btn-circle"><i
                                                     data-feather="calendar" class="text-white"></i></span>
@@ -81,7 +81,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
+                                    <a class="nav-link pt-3 text-center text-dark" routerLink="">
                                         <strong>{{Checkallnotificationsbutton}}</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
@@ -94,19 +94,19 @@
                     <!-- create new -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" routerLink="" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i data-feather="settings" class="svg-icon"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">{{ActionButton}}</a>
-                            <a class="dropdown-item" href="#">{{AnotherActionButton}}</a>
+                            <a class="dropdown-item" routerLink="">{{ActionButton}}</a>
+                            <a class="dropdown-item" routerLink="">{{AnotherActionButton}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">{{SomethingElseHereButton}}</a>
+                            <a class="dropdown-item" routerLink="">{{SomethingElseHereButton}}</a>
                         </div>
                     </li>
                     <li class="nav-item d-none d-md-block">
-                        <a class="nav-link" href="javascript:void(0)">
+                        <a class="nav-link" routerLink="">
                             <div class="customize-input">
                                 <select class="custom-select form-control bg-white custom-radius custom-shadow border-0">
                                     <option selected>{{ENButton}}</option>
@@ -126,7 +126,7 @@
                     <!-- Search -->
                     <!-- ============================================================== -->
                     <li class="nav-item d-none d-md-block">
-                        <a class="nav-link" href="javascript:void(0)">
+                        <a class="nav-link" routerLink="">
                             <form>
                                 <div class="customize-input">
                                     <input class="form-control custom-shadow custom-radius border-0 bg-white" type="search"
@@ -140,24 +140,24 @@
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" routerLink="" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <img src="/assets/images/YOSRA.jpg" alt="user" class="rounded-circle" width="40">
                             <span class="ml-2 d-none d-lg-inline-block"><span>{{HelloMessage}}</span> <span class="text-dark">{{UserName}}</span>
                                 <i data-feather="chevron-down" class="svg-icon"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
+                            <a class="dropdown-item" routerLink=""><i data-feather="user"
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{MyProfileB}}</a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
+                            <a class="dropdown-item" routerLink=""><i data-feather="credit-card"
                                     class="svg-icon mr-2 ml-1"></i>
                                {{MyBalanceB}} </a>
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
+                            <a class="dropdown-item" routerLink=""><i data-feather="mail"
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{InboxB}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
+                            <a class="dropdown-item" routerLink=""><i data-feather="settings"
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{AccountSettingB}}</a>
                             <div class="dropdown-divider"></div>
@@ -185,26 +185,26 @@
             <!-- Sidebar navigation-->
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink="index.html"
                             aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                 class="hide-menu">{{DashboardB}}</span></a></li>
                     <li class="list-divider"></li>
 
                     <li class="nav-small-cap"><span class="hide-menu">{{ApplicationsB}}</span></li>
 
-                    <li class="sidebar-item"> <a class="sidebar-link" href="/" aria-expanded="false"><i
+                    <li class="sidebar-item"> <a class="sidebar-link" routerLink="teletravail" aria-expanded="false"><i
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{TeletravailB}}
                     </span></a>
             </li>
-                    <li class="sidebar-item"> <a class="sidebar-link" href="/" aria-expanded="false"><i
+                    <li class="sidebar-item"> <a class="sidebar-link" routerLink="" aria-expanded="false"><i
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{CongesB}}
                     </span></a>
             </li>
-                    <li class="sidebar-item"> <a class="sidebar-link" href="/" aria-expanded="false"><i
+                    <li class="sidebar-item"> <a class="sidebar-link" routerLink="" aria-expanded="false"><i
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{ProjetsB}}
                     </span></a>
             </li>
-                    <li class="sidebar-item"> <a class="sidebar-link" href="/" aria-expanded="false"><i
+                    <li class="sidebar-item"> <a class="sidebar-link" routerLink="" aria-expanded="false"><i
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{TachesB}}
                     </span></a>
             </li>
@@ -218,16 +218,16 @@
                     <li class="nav-small-cap"><span class="hide-menu">{{ComponentsB}}</span></li>
                     
                         
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" routerLink=""
                             aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                 class="hide-menu">{{NotificationsB}}
                             </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"><a href="table-basic.html" class="sidebar-link"><span
+                            <li class="sidebar-item"><a routerLink="" class="sidebar-link"><span
                                         class="hide-menu"> {{NotifB1}}
                                     </span></a>
                             </li>
-                            <li class="sidebar-item"><a href="table-dark-basic.html" class="sidebar-link"><span
+                            <li class="sidebar-item"><a routerLink="" class="sidebar-link"><span
                                         class="hide-menu">
                                         {{NotifB2}}
                                     </span></a>
@@ -237,24 +237,24 @@
                         
                         </ul>
                     </li>
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" routerLink=""
                             aria-expanded="false"><i data-feather="bar-chart" class="feather-icon"></i><span
                                 class="hide-menu">{{ChartsB}} </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
                             
-                            <li class="sidebar-item"><a href="chart-chart-js.html" class="sidebar-link"><span
+                            <li class="sidebar-item"><a routerLink="" class="sidebar-link"><span
                                         class="hide-menu">
                                         {{ChartJsB1}}
                                     </span></a>
                             </li>
-                            <li class="sidebar-item"><a href="chart-knob.html" class="sidebar-link"><span class="hide-menu">
+                            <li class="sidebar-item"><a routerLink="" class="sidebar-link"><span class="hide-menu">
                                 {{ChartJsB2}}
                                     </span></a>
                             </li>
                         </ul>
                     </li>
                   
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="ui-cards.html"
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink=""
                             aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
                                 class="hide-menu">{{CardsB}}
                             </span></a>
@@ -262,12 +262,12 @@
                     <li class="list-divider"></li>
                     <li class="nav-small-cap"><span class="hide-menu">{{AuthenticationB}}</span></li>
 
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/login"
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink="login"
                             aria-expanded="false"><i data-feather="lock" class="feather-icon"></i><span
                                 class="hide-menu">{{LoginB}}
                             </span></a>
                     </li>
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-register1.html"
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink=""
                             aria-expanded="false"><i data-feather="lock" class="feather-icon"></i><span
                                 class="hide-menu">{{RegisterB}}
                             </span></a>

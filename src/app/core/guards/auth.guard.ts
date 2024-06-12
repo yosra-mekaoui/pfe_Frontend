@@ -9,11 +9,12 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const isLoggedIn = !!localStorage.getItem('accessToken');
-    if (isLoggedIn) {
-      return true;
-    } else {
-      return this.router.parseUrl('/login');
-    }
+    const isLoggedIn = localStorage.getItem('accessToken');
+    if (isLoggedIn == null) {
+  
+      alert('You need to login first');
+      this.router.navigate(['/login ']);
+      return false;
+    }return true;
   }
 }

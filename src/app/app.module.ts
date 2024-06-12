@@ -13,12 +13,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../../src/app/core/interceptors/jwt.interceptor';
 import { AuthService } from '../../src/app/core/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TeletravailComponent } from './shared/components/teletravail/teletravail.component';
 
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent],
-  imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule
+  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent],
+  imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule,
   ],
+
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

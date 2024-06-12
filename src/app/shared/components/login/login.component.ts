@@ -25,6 +25,7 @@ export class LoginComponent {
         this.authService.login(credentials).subscribe(
       (response: AuthResponse) => {
         this.authService.storeTokens(response.accessToken, response.refreshToken);
+        
         this.router.navigate(['/dashboard']);
       },
       (error: HttpErrorResponse) => {
