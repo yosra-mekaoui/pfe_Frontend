@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class ShellComponent {
   constructor(private authService: AuthService)
   {}
+  
   isUserAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }

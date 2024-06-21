@@ -34,7 +34,7 @@
         <td>{{ teletravail.Reason }}</td>
         <td>{{ teletravail.Status }}</td>
         <td>
-            <i *ngIf="teletravail._id" class="fas fa-edit" (click)="editTeletravail(teletravail)"></i>
+            <i *ngIf="teletravail._id" class="fas fa-edit" (click)="startEditing(teletravail._id)"></i>
             <i *ngIf="teletravail._id" class="fas fa-trash" (click)="deleteTeletravail(teletravail._id)"></i>
           </td>  
       </tr>

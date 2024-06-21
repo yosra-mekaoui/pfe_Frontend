@@ -140,14 +140,14 @@
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" routerLink="" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" routerLink="profile" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <img src="/assets/images/YOSRA.jpg" alt="user" class="rounded-circle" width="40">
                             <span class="ml-2 d-none d-lg-inline-block"><span>{{HelloMessage}}</span> <span class="text-dark">{{UserName}}</span>
                                 <i data-feather="chevron-down" class="svg-icon"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                            <a class="dropdown-item" routerLink=""><i data-feather="user"
+                            <a class="dropdown-item" ><i data-feather="user"
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{MyProfileB}}</a>
                             <a class="dropdown-item" routerLink=""><i data-feather="credit-card"
@@ -161,9 +161,6 @@
                                     class="svg-icon mr-2 ml-1"></i>
                                 {{AccountSettingB}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" ><i data-feather="power"
-                                    class="svg-icon mr-2 ml-1"></i>
-                                   Logout aa</a>
                             <div class="dropdown-divider"></div>
                             <div class="pl-4 p-3"><a class="btn btn-sm btn-info">{{ViewProfileB}}</a></div>
                         </div>
@@ -311,5 +308,5 @@
                 </ul>
             </nav>
         </div>
-    </aside> -->
+    </aside> --><router-outlet></router-outlet>
 </div>

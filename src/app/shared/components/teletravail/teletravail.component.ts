@@ -41,6 +41,17 @@ export class TeletravailComponent implements OnInit {
 
   onSubmit(): void {
     if (this.teletravailForm.valid) {
+      if (this.editingTeletravailId) {
+// Update existing teletravail
+this.http.put(`${this.baseUrl}/teletravails/${this.editingTeletravailId}`, this.teletravailForm.value).subscribe(response => {
+  console.log('Teletravail updated', response);
+  this.loadTeletravails();
+  this.teletravailForm.reset();
+  this.editingTeletravailId = null;
+}, error => {
+  console.error('Error updating teletravail', error);
+});
+} else {
       this.http.post(`${this.baseUrl}/teletravails`, this.teletravailForm.value).subscribe(response => {
         console.log('Teletravail request sent', response);
         this.loadTeletravails();
@@ -49,19 +60,21 @@ export class TeletravailComponent implements OnInit {
       });
     }
   }
+  }
   startEditing(id: string): void {
     this.editingTeletravailId = id;
-  }
+    const teletravail = this.teletravails.find(t => t._id === id);
+    if (teletravail) {
+      this.teletravailForm.patchValue({
+        StartDate: teletravail.StartDate,
+        EndDate: teletravail.EndDate,
+        Reason: teletravail.Reason,
+        Status: teletravail.Status
+      });
+    }
+    }
 
-  //update
-  editTeletravail(teletravail: Teletravail): void {
-    this.teletravailForm.patchValue({
-      StartDate: teletravail.StartDate,
-      EndDate: teletravail.EndDate,
-      Reason: teletravail.Reason,
-      Status: teletravail.Status
-    });
-  }
+
   
   deleteTeletravail(id: string): void {
     if (confirm('Are you sure you want to delete this telework request?')) {

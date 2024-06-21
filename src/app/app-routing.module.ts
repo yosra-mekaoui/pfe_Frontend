@@ -4,13 +4,15 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { ShellComponent } from './shared/components/shell/shell.component';
 import { TeletravailComponent } from './shared/components/teletravail/teletravail.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {
     path: 'dashboard', component: ShellComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'teletravail', component: TeletravailComponent } // Ajoutez cette ligne
+      { path: 'teletravail', component: TeletravailComponent },
+      {path:'profile',component:ProfileComponent}
     ]
 
   },
