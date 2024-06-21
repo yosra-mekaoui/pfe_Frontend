@@ -13,9 +13,14 @@ export class AuthGuard implements CanActivate {
     if (isLoggedIn == null) {
   
       alert('You need to login first');
-      this.router.navigate(['/login ']);
-      return false;
-    }return true;
+      return this.router.navigate(['/login ']);
+    }
+    // const userRole = localStorage.getItem('userRole');
+    // if (userRole !== 'Manager') {
+    //   alert('You are not authorized to access this page');
+    //   return this.router.navigate(['/login']);
+    // }
+    return true;
   }
   
 }

@@ -19,6 +19,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.baseUrl}/register`, user).pipe(
       tap((response: AuthResponse) => {
         this.storeTokens(response.accessToken, response.refreshToken);
+        // localStorage.setItem('userRole', response.user.role);
       })
     );
   }
@@ -27,6 +28,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, credentials).pipe(
       tap((response: AuthResponse) => {
         this.storeTokens(response.accessToken, response.refreshToken);
+        // localStorage.setItem('userRole', response.user.role);
       })
     );
   }
@@ -35,6 +37,7 @@ export class AuthService {
     console.log('Logging out...');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    // localStorage.removeItem('userRole');
     console.log('Tokens removed, redirecting to login...');
     this.router.navigate(['/login']).then(() => {
     console.log('Redirected to login');
@@ -55,6 +58,10 @@ export class AuthService {
 
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
+  }
+
+  getUserRole(): string | null {
+    return localStorage.getItem('userRole');
   }
 
   refreshToken(): Observable<AuthResponse> {

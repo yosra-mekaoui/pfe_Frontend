@@ -17,10 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TeletravailComponent } from './shared/components/teletravail/teletravail.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { UserService } from './shared/services/user.service';
+import { CongeComponent } from './shared/components/conge/conge.component';
 
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent],
+  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent],
   imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule,
   ],
 

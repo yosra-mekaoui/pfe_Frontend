@@ -1,0 +1,65 @@
+<div class="teletravail-container">
+    <h1>Demande de Congé</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="congeForm">
+        <div class="form-group">
+            <label for="StartDate">Date de début</label>
+            <input id="StartDate" type="date" formControlName="StartDate" required />
+        </div>
+        <div class="form-group">
+            <label for="EndDate">Date de fin</label>
+            <input id="EndDate" type="date" formControlName="EndDate" required />
+        </div>
+        <div class="form-group">
+            <label for="Type">Type</label>
+            <select id="Type" formControlName="Type" required>
+                <option value="Annual">Annual</option>
+                <option value="Sick">Sick</option>
+                <option value="Maternity">Maternity</option>
+                <option value="Paternity">Paternity</option>
+                <option value="Unpaid">Unpaid</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Status">Status</label>
+            <select id="Status" formControlName="Status" required>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="File">File</label>
+            <input id="File" type="file" formControlName="File" required />
+        </div>
+      
+      <button type="submit" [disabled]="congeForm.invalid">Envoyer</button>
+    </form>
+  </div>
+    <div class="tableau">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>File</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let conge of conges">
+        <td>{{ conge.StartDate | date }}</td>
+        <td>{{ conge.EndDate | date }}</td>
+        <td>{{ conge.Type }}</td>
+        <td>{{ conge.Status }}</td>
+        <td>{{ conge.File }}</td>
+        <td>
+            <i *ngIf="conge._id" class="fas fa-edit" (click)="startEditing(conge._id)"></i>
+            <i *ngIf="conge._id" class="fas fa-trash" (click)="deleteConge(conge._id)"></i>
+          </td>  
+      </tr>
+    </tbody>
+  </table>
+  
