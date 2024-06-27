@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Conge } from '../models/conge.model';
+import { AuthService } from '../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,23 @@ import { Conge } from '../models/conge.model';
 export class CongeService {
   private apiUrl = 'http://localhost:5000/api/conges'; // Changez l'URL si nécessaire
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getAccessToken();
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
 
   getConges(): Observable<Conge[]> {
-    return this.http.get<Conge[]>(this.apiUrl);
+    return this.http.get<Conge[]>(this.apiUrl, { headers: this.getHeaders() });
   }
+
+  getCongesByUserId(userId: string): Observable<Conge[]> {
+    return this.http.get<Conge[]>(`${this.apiUrl}/user/${userId}`, { headers: this.getHeaders() });
+  }
+
 
   getCongeById(id: string): Observable<Conge> {
     return this.http.get<Conge>(`${this.apiUrl}/${id}`);

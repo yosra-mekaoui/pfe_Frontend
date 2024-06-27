@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { AuthResponse } from '../../../modules/auth-response.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthResponse } from '../../../modules/auth-response.model';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +25,9 @@ export class LoginComponent {
         this.authService.login(credentials).subscribe(
       (response: AuthResponse) => {
         this.authService.storeTokens(response.accessToken, response.refreshToken);
+        // localStorage.setItem('userName', response.user.firstName);
+        // localStorage.setItem('userRole', response.user.role);
+        console.log('Login successful');
         this.router.navigate(['/dashboard']);
       },
       (error: HttpErrorResponse) => {

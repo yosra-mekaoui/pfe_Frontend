@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class HeaderComponent {
   constructor(private authService: AuthService) {}
   
+  
   isUserAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }

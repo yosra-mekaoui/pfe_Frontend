@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService,private router: Router) {}
 
   canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const isLoggedIn = localStorage.getItem('accessToken');
@@ -15,11 +16,6 @@ export class AuthGuard implements CanActivate {
       alert('You need to login first');
       return this.router.navigate(['/login ']);
     }
-    // const userRole = localStorage.getItem('userRole');
-    // if (userRole !== 'Manager') {
-    //   alert('You are not authorized to access this page');
-    //   return this.router.navigate(['/login']);
-    // }
     return true;
   }
   

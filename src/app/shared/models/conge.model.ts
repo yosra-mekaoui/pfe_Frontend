@@ -5,4 +5,5 @@ export interface Conge {
     Type: 'Annual' | 'Sick' | 'Maternity' | 'Paternity' | 'Unpaid' | 'Other';
     Status: 'Pending' | 'Approved' | 'Rejected';
     File: File;
+    userId: string;
     }

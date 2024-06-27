@@ -14,11 +14,11 @@
 </head>
 
 <body>
-
+    <app-header></app-header>
     <div *ngIf="isUserAuthenticated()" id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
 
-        <app-header></app-header>
+       
                 <router-outlet></router-outlet>
 
         <footer class="footer text-center text-muted">
