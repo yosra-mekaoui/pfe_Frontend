@@ -1,5 +1,5 @@
-<div class="teletravail-container">
-    <h1>Demande de Télétravail</h1>
+<div class="teletravail-container" *ngIf="isStaffRole">
+    <h1>Telework request</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="teletravailForm">
       <div class="form-group">
         <label for="StartDate">Date de début</label>
@@ -13,10 +13,17 @@
         <label for="Reason">Reason</label>
         <input id="Reason" type="text" formControlName="Reason" required />
       </div>
-      <button type="submit" [disabled]="teletravailForm.invalid">Envoyer</button>
-    </form>
-  </div>
+      <div class="form-group">
+        <label for="Status">Status</label>
+        <select id="Status" formControlName="Status">
+          <option value="Pending">Pending</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>    
     <div class="tableau">
+      <h1>history of your Teleworks Requests</h1>
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -40,4 +47,87 @@
       </tr>
     </tbody>
   </table>
+</div>
+</div>
+<div class="tableauManager" *ngIf="isManagerRole">
+  <h1>Pending teleworks Requests for Your Team</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Staff</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teletravail of pendingTeletravails">
+        <td>{{ teletravail.staffName }}</td>
+        <td>{{ teletravail.StartDate | date }}</td>
+        <td>{{ teletravail.EndDate | date }}</td>
+        <td>{{ teletravail.Reason }}</td>
+        <td>{{ teletravail.Status }}</td>
+        
+                <td>
+          <button class="approve-btn" (click)="onChangeStatus('Approved', teletravail._id)">Approve</button>
+          <button class="reject-btn" (click)="onChangeStatus('Rejected', teletravail._id)">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1>Processed teleworks Requests for Your Team</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Staff</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teletravail of processedTeletravails">
+        <td>{{ teletravail.staffName }}</td>
+        <td>{{ teletravail.StartDate | date }}</td>
+        <td>{{ teletravail.EndDate | date }}</td>
+        <td>{{ teletravail.Reason }}</td>
+        <td>{{ teletravail.Status }}</td>
+        
+            </tr>
+    </tbody>
+  </table>
+</div>
+<div class="tableauRh" *ngIf="isRhRole">
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by staff name" (keyup)="search()">
+  </div>
+  <div class="approved-conges">
+    <h1>List of teleworks</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Staff Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Status</th>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teletravail of teletravails">  
+        <td>{{ teletravail.userId.firstName }}</td>
+        <td>{{ teletravail.StartDate | date }}</td>
+        <td>{{ teletravail.EndDate | date }}</td>
+        <td>{{ teletravail.Reason }}</td>
+        <td>{{ teletravail.Status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
+</div>
+

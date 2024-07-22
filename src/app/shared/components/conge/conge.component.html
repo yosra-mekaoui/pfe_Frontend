@@ -1,44 +1,77 @@
-<div class="teletravail-container">
-    <h1>Demande de Congé</h1>
+<div class="teletravail-container" *ngIf="isStaffRole">
+  <h1>Request for Leave</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="congeForm">
-        <div class="form-group">
-            <label for="StartDate">Date de début</label>
-            <input id="StartDate" type="date" formControlName="StartDate" required />
+      <div class="form-group">
+          <label for="StartDate">Start Date</label>
+          <input id="StartDate" type="date" formControlName="StartDate" required />
+      </div>
+      <div class="form-group">
+          <label for="EndDate">End Date</label>
+          <input id="EndDate" type="date" formControlName="EndDate" required />
+      </div>
+      <div class="form-group flex-container">
+        <div class="form-item">
+          <label for="Type">Type</label>
+          <select id="Type" formControlName="Type" required>
+            <option value="Annual">Annual</option>
+            <option value="Sick">Sick</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Paternity">Paternity</option>
+            <option value="Unpaid">Unpaid</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label for="EndDate">Date de fin</label>
-            <input id="EndDate" type="date" formControlName="EndDate" required />
+        <div class="form-item">
+          <label for="Status">Status</label>
+          <select id="Status" formControlName="Status">
+            <option value="Pending">Pending</option>
+          </select>
         </div>
-        <div class="form-group">
-            <label for="Type">Type</label>
-            <select id="Type" formControlName="Type" required>
-                <option value="Annual">Annual</option>
-                <option value="Sick">Sick</option>
-                <option value="Maternity">Maternity</option>
-                <option value="Paternity">Paternity</option>
-                <option value="Unpaid">Unpaid</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="Status">Status</label>
-            <select id="Status" formControlName="Status"  [attr.disabled]="!isStaffRole">
-                <option value="Pending">Pending</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="File">File</label>
-            <input type="file" formControlName="File" id="File" />
-          </div>
-      
-      <button type="submit" [disabled]="congeForm.invalid">Envoyer</button>
-    </form>
+      </div>
+      <div class="form-group">
+          <label for="File">File</label>
+          <input type="file" formControlName="File" id="File" />
+      </div>
+    
+      <button type="submit" [disabled]="congeForm.invalid">Submit</button>
+  </form>
+  <div class="tableau">
+    <h1>history of your Leave Requests</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>File</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let conge of conges">
+                <td>{{ conge.StartDate | date }}</td>
+                <td>{{ conge.EndDate | date }}</td>
+                <td>{{ conge.Type }}</td>
+                <td>{{ conge.Status }}</td>
+                <td>{{ conge.File }}</td>
+                <td>
+                  <i *ngIf="conge._id" class="fas fa-edit" (click)="startEditing(conge._id)"></i>
+                  <i *ngIf="conge._id" class="fas fa-trash" (click)="deleteConge(conge._id)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
   </div>
-  
-    <div class="tableau">
+</div>
+
+<div class="tableauManager" *ngIf="isManagerRole">
+  <h1>Pending Leave Requests for Your Team</h1>
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>Staff</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Type</th>
@@ -48,17 +81,87 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let conge of conges">
+      <tr *ngFor="let conge of pendingConges">
+        <td>{{ conge.staffName }}</td>
         <td>{{ conge.StartDate | date }}</td>
         <td>{{ conge.EndDate | date }}</td>
         <td>{{ conge.Type }}</td>
         <td>{{ conge.Status }}</td>
-        <td>{{ conge.File }}</td>
         <td>
-            <i *ngIf="conge._id" class="fas fa-edit" (click)="startEditing(conge._id)"></i>
-            <i *ngIf="conge._id" class="fas fa-trash" (click)="deleteConge(conge._id)"></i>
-          </td>  
+          <i class="fa fa-download" 
+             (click)="downloadFile(conge._id ?? '', getFileName(conge.File) ?? 'Unknown_File')"></i> upload the file
+        </td>
+                <td>
+          <button class="approve-btn" (click)="onChangeStatus('Approved', conge._id)">Approve</button>
+          <button class="reject-btn" (click)="onChangeStatus('Rejected', conge._id)">Reject</button>
+        </td>
       </tr>
     </tbody>
-  </table></div>
+  </table>
+
+  <h1>Processed Leave Requests for Your Team</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Staff</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>File</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let conge of processedConges">
+        <td>{{ conge.staffName }}</td>
+        <td>{{ conge.StartDate | date }}</td>
+        <td>{{ conge.EndDate | date }}</td>
+        <td>{{ conge.Type }}</td>
+        <td>{{ conge.Status }}</td>
+        <td>
+          <i class="fa fa-download" 
+             (click)="downloadFile(conge._id ?? '', getFileName(conge.File) ?? 'Unknown_File')"></i> upload the file
+        </td>
+            </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="tableauRh" *ngIf="isRhRole">
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by staff name" (keyup)="search()">
+  </div>
+  <div class="approved-conges">
+    <h1>Approved Leaves</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>staffName</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>File</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conge of approvedConges">
+          <td>{{ conge.userId ? conge.userId.firstName : 'N/A'}}</td>
+          <td>{{ conge.StartDate | date }}</td>
+          <td>{{ conge.EndDate | date }}</td>
+          <td>{{ conge.Type }}</td>
+          <td>{{ conge.Status }}</td>
+          <td>
+            <i class="fa fa-download" 
+               (click)="downloadFile(conge._id ?? '', getFileName(conge.File) ?? 'Unknown_File')"></i> Download File
+          </td>
+        </tr>
+        <tr *ngIf="approvedConges.length === 0">
+          <td colspan="6">No approved leaves found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
+</div>
+

@@ -13,5 +13,6 @@ export class ShellComponent {
   isUserAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
+  
 
 }

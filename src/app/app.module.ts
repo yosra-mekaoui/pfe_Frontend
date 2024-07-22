@@ -18,10 +18,11 @@ import { TeletravailComponent } from './shared/components/teletravail/teletravai
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { UserService } from './shared/services/user.service';
 import { CongeComponent } from './shared/components/conge/conge.component';
+import { UsersComponent } from './shared/components/users/users.component';
 
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent],
+  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent],
   imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule,
   ],
 

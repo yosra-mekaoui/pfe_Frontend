@@ -3,6 +3,14 @@ export interface Teletravail {
     StartDate: Date;
     EndDate: Date;
     Reason: string;
-    Status: string;
+    Status: 'Pending' | 'Approved' | 'Rejected';
+    userId: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      id: string;
+    };
+    Staff?: string;
+    staffName?: string;
   }
   

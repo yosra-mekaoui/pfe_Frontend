@@ -17,7 +17,12 @@ export class CongeComponent implements OnInit {
   editingCongeId: string | null = null;
   private baseUrl = 'http://localhost:5000/api';
   isStaffRole: boolean = false;
-
+  isManagerRole: boolean = false;
+  isRhRole: boolean = false;
+  pendingConges: Conge[] = [];
+  processedConges: Conge[] = [];
+  searchTerm: string = '';
+  approvedConges: Conge[] = [];
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -31,12 +36,16 @@ export class CongeComponent implements OnInit {
       Status: ['Pending', Validators.required],
       File: [null]
     });
+  
   }
 
   ngOnInit(): void {
     this.userId = this.authService.getCurrentUserId();
     const userRole = this.authService.getUserRole();
     this.isStaffRole = userRole === 'Staff';
+    this.isManagerRole = userRole === 'Manager';
+    this.isRhRole = userRole === 'RH';
+
 
     if (this.userId) {
       this.loadConges();
@@ -53,18 +62,55 @@ export class CongeComponent implements OnInit {
           console.error('Error fetching conges', error);
         }
       );
-    } else {
-      this.congeService.getConges().subscribe(
+    } else if (this.isManagerRole) {
+      this.congeService.getCongesByManager(this.userId!).subscribe(
         (data: Conge[]) => {
           this.conges = data;
+          this.pendingConges = data.filter(conge => conge.Status === 'Pending');
+          this.processedConges = data.filter(conge => conge.Status !== 'Pending')
         },
         (error) => {
           console.error('Error fetching conges', error);
         }
       );
     }
+    else if (this.isRhRole) {
+      this.congeService.getApprovedConges().subscribe(
+        (data: Conge[]) => {
+          this.approvedConges = data.filter(conge => conge.Status === 'Approved');
+        },
+        (error) => {
+          console.error('Error fetching approved conges', error);
+        }
+      );
+    }
   }
-
+  search(): void {
+    if (this.searchTerm.trim() !== '') {
+      this.congeService.searchConges(this.searchTerm).subscribe(
+        (data) => {
+          this.approvedConges = data;
+        },
+        (error) => {
+          console.error('Error fetching approved conges:', error);
+          // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
+        }
+      );
+    } else {
+      this.getApprovedConges(); // Charger tous les congés approuvés si aucun terme de recherche n'est saisi
+    }
+  }
+  getApprovedConges(): void {
+    this.congeService.getApprovedConges().subscribe(
+      (data) => {
+        this.approvedConges = data;
+      },
+      (error) => {
+        console.error('Error fetching approved congés:', error);
+        // Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
+      }
+    );
+  }
   onSubmit(): void {
     console.log('Form values:', this.congeForm.value);
     if (this.congeForm.valid) {
@@ -155,4 +201,62 @@ export class CongeComponent implements OnInit {
       }
     );
   }
-}
+  // onChangeStatus(newStatus: string, congeId: string | undefined): void {
+  //   if (!congeId) {
+  //     console.error('Congé ID is undefined');
+  //     return;
+  //   }
+  //   const token = localStorage.getItem('accessToken');
+  //   if (token) {
+  //     this.congeService.updateCongeStatus(congeId, newStatus, token).subscribe(
+  //       (response) => {
+  //         console.log('Conge status updated', response);
+  //         this.loadConges();
+  //       },
+  //       (error) => {
+  //         console.error('Error updating conge status', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('No token found');
+  //   }
+  // }
+  onChangeStatus(newStatus: string, congeId: string | undefined): void {
+    if (!congeId) {
+      console.error('Congé ID is undefined');
+      return;
+    }
+    
+    this.congeService.updateCongeStatus(congeId, newStatus).subscribe(
+      (response) => {
+        console.log('Conge status updated', response);
+        this.loadConges(); // Recharger la liste des congés après mise à jour
+      },
+      (error) => {
+        console.error('Error updating conge status', error);
+      }
+    );
+  }
+  
+  
+  downloadFile(congeId: string, fileName: string): void {
+    this.congeService.downloadFile(congeId).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Download error:', error);
+    });
+  }
+
+  getFileName(file: string): string {
+    return file.split('/').pop() || 'Unknown File';
+  }
+
+}  
+

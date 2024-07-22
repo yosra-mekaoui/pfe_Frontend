@@ -7,17 +7,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
   
-  
-  isUserAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
-  }
-
-  logout(): void {
-    this.authService.logout();
-  }
-
 
   DeloitteTitle = 'Deloitte';
   LuanchAdminTitle = 'Luanch Admin';
@@ -42,10 +32,11 @@ export class HeaderComponent {
   ViewProfileB = 'View Profile';
   DashboardB = 'Dashboard';
   ApplicationsB = 'Applications';
-  TeletravailB = 'Télétravail';
-  CongesB = 'Congés';
-  ProjetsB = 'Projets';
-  TachesB = 'Tâches';
+  AllStaff= 'All Staff';
+  TeletravailB = 'teleworks';
+  CongesB = 'Leaves';
+  ProjetsB = 'Projects';
+  TachesB = 'Tasks';
   ComponentsB = 'Components';
   NotificationsB = 'Notifications';
   NotifB1 = 'Notif 1';
@@ -59,5 +50,23 @@ export class HeaderComponent {
   RegisterB = 'Register';
   ExtraB = 'Extra';
   LogoutB2 = 'Logout';
+  isRhRole: boolean = false;
+  constructor(private authService: AuthService) {}
+  
+  ngOnInit(): void {
+    this.checkUserRole();
+  }
+  isUserAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+  checkUserRole(): void {
+    const userRole = this.authService.getUserRole(); // Assuming this method exists and returns the role
+    this.isRhRole = (userRole === 'RH');
+  }
 
 }
