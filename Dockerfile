@@ -4,6 +4,7 @@
 # This is needed to build and compile our code 
 # while generating the docker image
 FROM node:16.16-alpine AS build
+ENV CHROME_BIN="/usr/bin/chromium-browser"
 # Create a Virtual directory inside the docker image
 WORKDIR /dist/src/app
 # Copy files to virtual directory
