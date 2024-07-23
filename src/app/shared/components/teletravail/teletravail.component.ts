@@ -4,7 +4,6 @@ import { HttpClient,HttpHeaders} from '@angular/common/http';
 import { Teletravail } from '../../models/teletravail.model';
 import { TeletravailService } from '../../services/teletravail.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { Observable } from 'rxjs';
 @Component({
   selector: 'app-teletravail',
   templateUrl: './teletravail.component.html',

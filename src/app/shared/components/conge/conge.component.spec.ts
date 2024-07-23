@@ -1,5 +1,5 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CongeComponent } from './conge.component';
 
 describe('CongeComponent', () => {
@@ -8,6 +8,7 @@ describe('CongeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule], 
       declarations: [CongeComponent]
     });
     fixture = TestBed.createComponent(CongeComponent);

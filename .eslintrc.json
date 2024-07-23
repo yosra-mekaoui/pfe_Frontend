@@ -15,5 +15,33 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "none",
+                "ignoreRestSiblings": true,
+                "varsIgnorePattern": "^(exports|HttpHeaders|AuthService)$",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "no-undef": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "no-cond-assign": "off",
+        "no-self-assign": "off",
+        "no-empty": "off",
+        "no-control-regex": "off",
+        "no-prototype-builtins": "off",
+        "no-useless-escape": "off",
+        "no-extra-semi": "off",
+        "no-redeclare": "off",
+        "getter-return": "off",
+        "@typescript-eslint/getter-return": "off",
+        "no-unsafe-finally": "off",
+        "no-case-declarations": "off"
+    },
+    "globals": {
+        "$": "readonly",
+        "define": "readonly"
     }
 }
