@@ -72,9 +72,13 @@ console.log('Manager role');
     );
   }
   else if(this.isRhRole) {
+    console.log('-------------')
     this.teletravailService.getApprovedTeletravails().subscribe(
       (data: Teletravail[]) => {
-        this.approvedTeletravails = data.filter(t => t.Status === 'Approved');
+        this.approvedTeletravails = data.filter(teletravail => teletravail.Status === 'Approved');
+        console.log('-------------')
+        console.log(data)
+
       },
       (error) => {
         console.error('Error fetching teletravails', error);
@@ -98,8 +102,9 @@ search(): void {
   }
 }
 getApprovedTeletravails(): void {
+  console.log('-------------')
   this.teletravailService.getApprovedTeletravails().subscribe(
-    (data: Teletravail[]) => {
+    (data) => {
       this.approvedTeletravails = data;
     },
     (error) => {

@@ -1,0 +1,22 @@
+.report-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background-color: #f4f4f4; /* light background to make the iframe stand out */
+    border: 1px solid #86bc24;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    height: 90vh; /* 90% of the viewport height */
+    margin: auto;
+  }
+  
+  .report-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* remove the default border of the iframe */
+    border-radius: 8px; /* match the border radius of the container */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  

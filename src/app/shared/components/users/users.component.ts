@@ -2,7 +2,9 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -17,27 +19,32 @@ export class UsersComponent implements OnInit {
   editingUserId: string | null = null;
   userForm!: FormGroup;
   searchTerm: string = '';
+
   private baseUrl = 'http://localhost:5000/api';
 
   constructor(private fb: FormBuilder,
     private userService: UserService, 
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    public dialog: MatDialog
   ) {
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      startWorkDate: ['', Validators.required],
+      sold: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.checkUserRole();
     if (this.isRhRole) {
-      this.loadUsers();
+        this.loadUsers();
     }
   }
+  
 
   checkUserRole(): void {
     const userRole = this.authService.getUserRole();
@@ -96,5 +103,16 @@ export class UsersComponent implements OnInit {
           }
         );
       }
+}
+openUserDetail(user: any) {
+  // Ouvrir une modale avec les détails de l'utilisateur
+  const dialogRef = this.dialog.open(UserDetailComponent, {
+    width: '400px',
+    data: user
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+  });
 }
 }

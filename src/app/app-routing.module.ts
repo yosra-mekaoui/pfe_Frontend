@@ -7,6 +7,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { CongeComponent } from './shared/components/conge/conge.component';
 import { UsersComponent } from './shared/components/users/users.component';
+import { PowerBiReportComponent } from './shared/components/power-bi-report/power-bi-report.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'teletravail', component: TeletravailComponent },
       { path: 'conge', component: CongeComponent},
       {path:'profile',component:ProfileComponent},
-      {path:'users',component:UsersComponent}
+      {path:'users',component:UsersComponent},
+      {path:'powerBi',component:PowerBiReportComponent}
     ]
 
   },

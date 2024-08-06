@@ -19,11 +19,15 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { UserService } from './shared/services/user.service';
 import { CongeComponent } from './shared/components/conge/conge.component';
 import { UsersComponent } from './shared/components/users/users.component';
+import { PowerBiReportComponent } from './shared/components/power-bi-report/power-bi-report.component';
+import { UserDetailComponent } from './shared/components/user-detail/user-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent],
-  imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule,
+  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent, PowerBiReportComponent, UserDetailComponent],
+  imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatDialogModule
   ],
 
   providers: [

@@ -106,11 +106,11 @@
     <input type="text" [(ngModel)]="searchTerm" placeholder="Search by staff name" (keyup)="search()">
   </div>
   <div class="approved-conges">
-    <h1>List of teleworks</h1>
+    <h1>Approved teleworks</h1>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Staff Name</th>
+          <th>StaffName</th>
           <th>Start Date</th>
           <th>End Date</th>
           <th>Reason</th>
@@ -118,12 +118,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let teletravail of teletravails">  
-        <td>{{ teletravail.userId.firstName }}</td>
+        <tr *ngFor="let teletravail of approvedTeletravails">  
+        <td>{{ teletravail.userId ? teletravail.userId.firstName : 'N/A'}}</td>
         <td>{{ teletravail.StartDate | date }}</td>
         <td>{{ teletravail.EndDate | date }}</td>
         <td>{{ teletravail.Reason }}</td>
         <td>{{ teletravail.Status }}</td>
+        </tr>
+        <tr *ngIf="approvedTeletravails.length === 0">
+          <td colspan="6">No approved leaves found.</td>
         </tr>
       </tbody>
     </table>

@@ -11,5 +11,7 @@ export interface User {
     email: string;
     password: string;
     role: Role;
+    startWorkDate: Date;
+    sold: number;
   }
   
