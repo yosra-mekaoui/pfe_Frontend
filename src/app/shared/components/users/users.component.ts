@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RefreshComponent } from '../refresh/refresh.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class UsersComponent implements OnInit {
   editingUserId: string | null = null;
   userForm!: FormGroup;
   searchTerm: string = '';
+  @ViewChild(RefreshComponent) refresh!: RefreshComponent | undefined;
 
   private baseUrl = 'http://localhost:5000/api';
 
@@ -44,23 +46,34 @@ export class UsersComponent implements OnInit {
         this.loadUsers();
     }
   }
+  ngAfterViewInit(): void {
+    // Vérifiez si le composant est bien disponible
+    console.log('RefreshAnimationComponent:', this.refresh);
+  }
   
 
   checkUserRole(): void {
     const userRole = this.authService.getUserRole();
     this.isRhRole = userRole === 'RH';
   }
-   loadUsers(): void {
+  loadUsers(): void {
     this.userService.getProfile().subscribe(
       (data: User[]) => {
         this.users = data;
+        // Vérifiez si le composant est disponible après le chargement des utilisateurs
+        setTimeout(() => {
+          if (this.refresh) {
+            this.refresh.triggerRefresh();
+          } else {
+            console.error('RefreshAnimationComponent not found');
+          }
+        }, 0); // Assurez-vous que la mise à jour du DOM est effectuée
       },
       (error) => {
         console.error('Error fetching users', error);
       }
     );
   }
-
   deleteUser(id: string): void {
     if (!id) {
       console.error('No user ID provided for delete');
