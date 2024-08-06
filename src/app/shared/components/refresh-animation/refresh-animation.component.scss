@@ -1,0 +1,28 @@
+.refresh-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 255, 0, 0.2); /* Couleur verte transparente */
+    z-index: 1000;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .refresh-message {
+    background-color: #4caf50; /* Couleur verte */
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
