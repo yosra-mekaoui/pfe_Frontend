@@ -8,7 +8,14 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { CongeComponent } from './shared/components/conge/conge.component';
 import { UsersComponent } from './shared/components/users/users.component';
 import { PowerBiReportComponent } from './shared/components/power-bi-report/power-bi-report.component';
-
+import { ProjectListComponent } from './shared/components/project-list/project-list.component';
+import { ProjectDetailComponent } from './shared/components/project-detail/project-detail.component';
+import { TaskListComponent } from './shared/components/task-list/task-list.component';
+import { TaskDetailComponent } from './shared/components/task-detail/task-detail.component';
+import { BacklogListComponent } from './shared/components/backlog-list/backlog-list.component';
+import { BacklogDetailComponent } from './shared/components/backlog-detail/backlog-detail.component';
+import { SprintListComponent } from './shared/components/sprint-list/sprint-list.component';
+import { SprintDetailComponent } from './shared/components/sprint-detail/sprint-detail.component';
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {
@@ -18,7 +25,15 @@ const routes: Routes = [
       { path: 'conge', component: CongeComponent},
       {path:'profile',component:ProfileComponent},
       {path:'users',component:UsersComponent},
-      {path:'powerBi',component:PowerBiReportComponent}
+      {path:'powerBi',component:PowerBiReportComponent},
+      {path:'projects',component:ProjectListComponent}, 
+      { path: 'projects/:id', component: ProjectDetailComponent },
+      { path: 'tasks', component: TaskListComponent },
+      { path: 'tasks/:id', component: TaskDetailComponent },
+      { path: 'backlogs', component: BacklogListComponent },
+      { path: 'backlogs/:id', component: BacklogDetailComponent },
+      { path: 'sprints', component: SprintListComponent },
+      { path: 'sprints/:id', component: SprintDetailComponent },
     ]
 
   },

@@ -1,0 +1,9 @@
+<div class="container">
+<h1>Project List
+</h1>
+<ul>
+  <li *ngFor="let project of projects">
+    <a [href]="['/projects', project._id]">{{ project.Name }}</a>
+  </li>
+</ul>
+</div>

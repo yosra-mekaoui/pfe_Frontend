@@ -106,6 +106,8 @@ getApprovedTeletravails(): void {
   this.teletravailService.getApprovedTeletravails().subscribe(
     (data) => {
       this.approvedTeletravails = data;
+      console.log(this.approvedTeletravails); // Verify structure
+
     },
     (error) => {
       console.error('Error fetching approved teletravails', error);

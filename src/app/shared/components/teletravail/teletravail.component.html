@@ -110,7 +110,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>StaffName</th>
+          <th>Staff Email</th>
           <th>Start Date</th>
           <th>End Date</th>
           <th>Reason</th>
@@ -119,7 +119,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let teletravail of approvedTeletravails">  
-        <td>{{ teletravail.userId ? teletravail.userId.firstName : 'N/A'}}</td>
+        <td>{{ teletravail.userId ? teletravail.userId.email : 'N/A'}}</td>
         <td>{{ teletravail.StartDate | date }}</td>
         <td>{{ teletravail.EndDate | date }}</td>
         <td>{{ teletravail.Reason }}</td>
