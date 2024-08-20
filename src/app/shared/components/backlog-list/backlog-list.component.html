@@ -1,1 +1,6 @@
-<p>backlog-list works!</p>
+<h1>Backlog List</h1>
+<ul>
+  <li *ngFor="let backlog of backlogs">
+    <a [href]="['/backlogs', backlog._id]">{{ backlog.Project }}</a>
+  </li>
+</ul>

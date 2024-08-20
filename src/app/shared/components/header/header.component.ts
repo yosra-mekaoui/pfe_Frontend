@@ -41,8 +41,8 @@ export class HeaderComponent {
   NotificationsB = 'Notifications';
   NotifB1 = 'Notif 1';
   NotifB2 = 'Notif 2';
-  ChartsB = 'Charts';
-  ChartJsB1 = 'Chart Js 1';
+  ChartsB = 'Task Board';
+  ChartJsB1 = 'Power Bi';
   ChartJsB2 = 'Chart Js 2';
   CardsB = 'Cards';
   AuthenticationB = 'Authentication';
@@ -51,6 +51,7 @@ export class HeaderComponent {
   ExtraB = 'Extra';
   LogoutB2 = 'Logout';
   isRhRole: boolean = false;
+  isManagerRole: boolean = false;
   constructor(private authService: AuthService) {}
   
   ngOnInit(): void {
@@ -66,7 +67,9 @@ export class HeaderComponent {
 
   checkUserRole(): void {
     const userRole = this.authService.getUserRole(); // Assuming this method exists and returns the role
-    this.isRhRole = (userRole === 'RH');
+    // RH OR MANAGER
+    this.isRhRole = (userRole === 'RH'),
+    this.isManagerRole = (userRole === 'Manager')
   }
 
 }

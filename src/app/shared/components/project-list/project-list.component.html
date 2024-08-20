@@ -1,9 +1,37 @@
-<div class="container">
-<h1>Project List
-</h1>
-<ul>
-  <li *ngFor="let project of projects">
-    <a [href]="['/projects', project._id]">{{ project.Name }}</a>
-  </li>
-</ul>
+<div *ngIf="isManagerRole" class="container">
+    <div class="project-dashboard">
+        <h1>Project Dashboard</h1>
+      
+        <div class="filters">
+          <label for="status">Filter by Status:</label>
+          <select id="status" (change)="onStatusFilterChange($event)">
+            <option value="">All</option>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+      
+          <label for="date">Filter by Date:</label>
+          <input type="date" id="date" (change)="onDateFilterChange($event)">
+        </div>
+      
+        <div class="project-list">
+          <div *ngFor="let project of filteredProjects" class="project-card">
+            <h3>{{ project.Name }}</h3>
+            <p>Status: {{ project.Status }}</p>
+            <p>Start Date: {{ project.StartDate | date }}</p>
+            <p>End Date: {{ project.EndDate | date }}</p>
+            <p>Manager: {{ project.manager?.firstName }} {{ project.manager?.lastName }}</p>
+            <p>Team Members: {{ getTeamMemberNames(project.teamMembers) }}</p>
+             <p>Tasks: {{ getTask(project.tasks) }}</p>
+             <button class="btn btn-primary" (click)="openProjectDetail(project)">Detail</button>
+              <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
+              <button class="btn btn-warning" [routerLink]="'/dashboard/project/edit/'+project._id">Edit</button>
+
+
+
+          </div>
+        </div>
+      </div>
+      
 </div>

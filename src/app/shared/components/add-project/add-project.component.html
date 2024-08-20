@@ -1,0 +1,111 @@
+<div *ngIf="isManagerRole" class="teletravail-container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="projectForm">
+      <!-- Formulaire du Projet -->
+      <div class="form-group">
+        <label for="Name">Project Name</label>
+        <input id="Name" type="text" formControlName="Name" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea id="Description" formControlName="Description" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input id="StartDate" type="date" formControlName="StartDate" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input id="EndDate" type="date" formControlName="EndDate" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="Status">Status</label>
+        <select id="Status" formControlName="Status" required>
+          <option value="Not Started">Not Started</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="manager">Manager</label>
+        <select id="manager" formControlName="manager">
+          <option *ngFor="let manager of managers" [value]="manager._id">
+            {{ manager.firstName }} {{ manager.lastName }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="TeamMembers">Team Members</label>
+        <select id="TeamMembers" formControlName="teamMembers" multiple>
+          <option *ngFor="let member of teamMembers" [value]="member._id">
+            {{ member.firstName }} {{ member.lastName }}
+          </option>
+        </select>
+      </div>
+      
+      <!-- Formulaire des Tâches -->
+      <div formArrayName="tasks">
+        <div *ngFor="let task of tasks.controls; let i = index" [formGroupName]="i">
+          <h4>Task {{ i + 1 }}</h4>
+          
+          <div class="form-group">
+            <label for="Title">Task Title</label>
+            <input id="Title" formControlName="Title" type="text" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="Description">Task Description</label>
+            <textarea id="Description" formControlName="Description" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="Status">Task Status</label>
+            <select id="Status" formControlName="Status" required>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="Priority">Task Priority</label>
+            <select id="Priority" formControlName="Priority" required>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="StartDate">Task Start Date</label>
+            <input id="StartDate" type="date" formControlName="StartDate" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="DueDate">Task Due Date</label>
+            <input id="DueDate" type="date" formControlName="DueDate" required />
+          </div>
+          <div class="form-group">
+            <label for="assignedTo">Assigned To</label>
+            <select id="assignedTo" formControlName="assignedTo" required>
+              <option *ngFor="let member of teamMembers" [value]="member.id">
+                {{ member.firstName }} {{ member.lastName }}
+              </option>
+            </select>
+          </div>
+          
+          <button type="button" (click)="removeTask(i)">Remove Task</button>
+        </div>
+        
+        <button type="button" (click)="addTask()">Add Task</button>
+      </div>
+      
+      <button type="submit" [disabled]="projectForm.invalid">Submit</button>
+    </form>
+  </div>
+  

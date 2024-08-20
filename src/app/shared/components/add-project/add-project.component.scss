@@ -1,0 +1,310 @@
+.teletravail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #86bc24;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #1d1d1b; /* Noir */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #1d1d1b; /* Noir */
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #86bc24;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #86bc24; /* Vert Deloitte */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #86bc24;
+  }
+  
+  @media (max-width: 768px) {
+    .teletravail-container {
+      padding: 10px;
+    }
+  
+    .form-group input {
+      padding: 8px;
+    }
+  
+    button {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+  
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .form-item {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .form-item:last-child {
+    margin-right: 0;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+  .tableau,
+  .tableauManager {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #86bc24;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tableau h1,
+  .tableauManager h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  /* Table styling */
+  .tableau table,
+  .tableauManager table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tableau thead,
+  .tableauManager thead {
+    background-color: #f8f9fa;
+  }
+  
+  .tableau th,
+  .tableau td,
+  .tableauManager th,
+  .tableauManager td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .tableau th,
+  .tableauManager th {
+    background-color: #86bc24;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .tableau tr:nth-child(even),
+  .tableauManager tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .tableau tr:hover,
+  .tableauManager tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Button styling */
+  .tableau button,
+  .tableauManager button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px; /* Space between buttons */
+  }
+  
+  .tableau button:hover,
+  .tableauManager button:hover {
+    opacity: 0.9;
+  }
+  
+  .tableau button:focus,
+  .tableauManager button:focus {
+    outline: none;
+  }
+  
+  .tableau .approve-btn,
+  .tableau .reject-btn,
+  .tableauManager .approve-btn,
+  .tableauManager .reject-btn {
+    flex: none; /* Prevents buttons from stretching */
+  }
+  
+  .tableau .approve-btn,
+  .tableauManager .approve-btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .tableau .reject-btn,
+  .tableauManager .reject-btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  /* File column styling */
+  .tableau td:nth-child(6),
+  .tableauManager td:nth-child(6) {
+    word-break: break-all;
+  }
+  
+  .tableau th:nth-child(6),
+  .tableauManager th:nth-child(6) {
+    width: 200px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .tableau th,
+    .tableau td,
+    .tableauManager th,
+    .tableauManager td {
+      font-size: 12px;
+      padding: 10px 8px;
+    }
+  
+    .tableau h1,
+    .tableauManager h1 {
+      font-size: 20px;
+    }
+  }
+  /* Icon styling */
+  a.download-link {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  a.download-link:hover {
+    color: #0056b3;
+  }
+  
+  a.download-link i {
+    font-size: 18px;
+  }
+  .fa-upload {
+    cursor: pointer;
+    color: #007bff; /* couleur de l'icône */
+    font-size: 24px; /* taille de la police */
+  }
+  
+  /* conge.component.scss */
+  
+  .tableauRh {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: white;
+    border: 1px solid #86bc24;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input[type="text"] {
+    padding: 8px;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .approved-conges {
+    margin-top: 20px;
+  }
+  
+  .approved-conges h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table td i {
+    cursor: pointer;
+    color: #007bff;
+    margin-right: 5px;
+  }
+  
+  .table td i:hover {
+    color: #0056b3;
+  }
+  
+  .table td[colspan="6"] {
+    text-align: center;
+    padding: 10px;
+    color: #999;
+  }
+  
+  

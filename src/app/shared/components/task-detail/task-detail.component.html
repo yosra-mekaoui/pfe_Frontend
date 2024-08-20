@@ -1,1 +1,12 @@
-<p>task-detail works!</p>
+<div *ngIf="task">
+    <h2>{{ task.Title }}</h2>
+    <p>{{ task.Description }}</p>
+    <p>Priority: {{ task.Priority }}</p>
+    <p>Status: {{ task.Status }}</p>
+    <p>Start Date: {{ task.StartDate | date }}</p>
+    <p>Due Date: {{ task.DueDate | date }}</p>
+    <p>Assigned To: {{ task.assignedTo }}</p>
+    <p>Created By: {{ task.createdBy }}</p>
+    <button (click)="deleteTask()">Delete Task</button>
+  </div>
+  

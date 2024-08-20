@@ -203,10 +203,27 @@
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{CongesB}}
                     </span></a>
             </li>
-                    <li class="sidebar-item"> <a class="sidebar-link" routerLink="" aria-expanded="false"><i
-                        data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{ProjetsB}}
-                    </span></a>
-            </li>
+            <li *ngIf="isManagerRole" class="sidebar-item">
+                <a class="sidebar-link" data-bs-toggle="collapse"  routerLink="projects" aria-expanded="false">
+                  <i data-feather="tag" class="feather-icon"></i>
+                  <span class="hide-menu">Projects</span>
+                </a>
+                <ul id="projectSubmenu" class="collapse sidebar-submenu">
+                  <li class="sidebar-item">
+                    <a class="sidebar-link"  routerLink="projects">
+                        <i data-feather="list" class="feather-icon"></i> <!-- Icône pour List Projects -->
+                      <span class="hide-menu">List Projects</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" routerLink="add/project">
+                        <i data-feather="plus" class="feather-icon"></i> <!-- Icône pour Add Project -->
+                      <span class="hide-menu">Add Project</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
                     <li class="sidebar-item"> <a class="sidebar-link" routerLink="" aria-expanded="false"><i
                         data-feather="tag" class="feather-icon"></i><span class="hide-menu">{{TachesB}}
                     </span></a>
@@ -240,7 +257,7 @@
                         
                         </ul>
                     </li>
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" routerLink=""
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" routerLink="taskboard"
                             aria-expanded="false"><i data-feather="bar-chart" class="feather-icon"></i><span
                                 class="hide-menu">{{ChartsB}} </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
@@ -257,9 +274,9 @@
                         </ul>
                     </li>
                   
-                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink=""
+                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link" routerLink="powerBi"
                             aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
-                                class="hide-menu">{{CardsB}}
+                                class="hide-menu">{{ChartJsB1}}
                             </span></a>
                     </li>
                     <li class="list-divider"></li>
