@@ -27,8 +27,10 @@
 
 
           <td>
-           
-            <button class="btn btn-primary" (click)="openUserDetail(user)">Detail</button>
+            <i class="fas fa-info-circle icon icon-info" (click)="openUserDetail(user)"></i>
+<i class="fas fa-edit icon icon-edit" (click)="updateUser(user._id || user.id)"></i>
+<i class="fas fa-trash icon icon-delete" (click)="deleteUser(user._id || user.id)"></i>
+
           </td>
         </tr>
       </tbody>

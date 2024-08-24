@@ -180,3 +180,40 @@ label {
   .table td button {
     margin: 0px;
   }
+  .icon {
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    margin: 0 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .icon:hover {
+    color: #007bff;
+    transform: scale(1.2);
+  }
+  
+  .icon-info {
+    color: #17a2b8;
+  }
+  
+  .icon-edit {
+    color: #28a745;
+  }
+  
+  .icon-delete {
+    color: #dc3545;
+  }
+  
+  .icon-info:hover {
+    color: #138496;
+  }
+  
+  .icon-edit:hover {
+    color: #218838;
+  }
+  
+  .icon-delete:hover {
+    color: #c82333;
+  }
+  

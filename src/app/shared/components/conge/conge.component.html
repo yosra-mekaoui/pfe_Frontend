@@ -1,4 +1,5 @@
-<div class="conge-container" *ngIf="isStaffRole">
+<div class="container">
+<div  *ngIf="isStaffRole">
   <h1>Request for Leave</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="congeForm">
       <div class="form-group">
@@ -66,7 +67,7 @@
   </div>
 </div>
 
-<div class="tableauManager" *ngIf="isManagerRole">
+<div  *ngIf="isManagerRole">
   <h1>Pending Leave Requests for Your Team</h1>
   <table class="table table-bordered">
     <thead>
@@ -92,8 +93,8 @@
              (click)="downloadFile(conge._id ?? '', getFileName(conge.File) ?? 'Unknown_File')"></i> upload the file
         </td>
                 <td>
-          <button class="approve-btn" (click)="onChangeStatus('Approved', conge._id)">Approve</button>
-          <button class="reject-btn" (click)="onChangeStatus('Rejected', conge._id)">Reject</button>
+          <button class="btn btn-primary" (click)="onChangeStatus('Approved', conge._id)">Approve</button>
+          <button class="btn btn-danger" (click)="onChangeStatus('Rejected', conge._id)">Reject</button>
         </td>
       </tr>
     </tbody>
@@ -127,7 +128,7 @@
   </table>
 </div>
 
-<div class="tableauRh" *ngIf="isRhRole">
+<div  *ngIf="isRhRole">
   <div class="search-bar">
     <input type="text" [(ngModel)]="searchTerm" placeholder="Search by staff name" (keyup)="search()">
   </div>
@@ -165,3 +166,4 @@
   
 </div>
 
+</div>

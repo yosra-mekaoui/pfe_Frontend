@@ -1,30 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/images/favicon.png"
+    />
+    <title>Scraping Data Display</title>
+    <!-- Add your CSS here -->
+  </head>
 
-</head>
-
-<body>
+  <body>
     <app-header></app-header>
-    
+
     <div *ngIf="isUserAuthenticated()" id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-
     
-                <router-outlet></router-outlet>
-
+        <!-- Conditionally display scraped data section -->
+        <div class="container" *ngIf="showScrapedContent">
+            <div *ngIf="scrapedData.length > 0">
+                <div *ngFor="let item of scrapedData">
+                    <h3>Qui sommes-nous ?</h3>
+                    <p>{{ item }}</p>
+                </div>
+            </div>
+            <div *ngIf="scrapedData.length === 0">
+                <p>No data available.</p>
+            </div>
+    
+            <!-- Additional Content Section -->
+            <div *ngIf="additionalContent && additionalContent.headline">
+                <h3>{{ additionalContent.headline }}</h3>
+                <p>{{ additionalContent.paragraph }}</p>
+    
+                <div *ngFor="let item of additionalContent.carouselItems">
+                    <h4>{{ item.header }}</h4>
+                    <p>{{ item.abstract }}</p>
+                    <img *ngIf="item.imgSrc" [src]="item.imgSrc" alt="Carousel image" />
+                    <a *ngIf="item.link" [href]="item.link" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div *ngIf="!additionalContent.headline">
+                <p>No additional content available.</p>
+            </div>
+        </div>
+    
+        <!-- Router outlet for other components -->
+        <router-outlet></router-outlet>
+    
         <footer class="footer text-center text-muted">
+            <!-- Footer content -->
         </footer>
     </div>
-</body>
-
+    
+  </body>
 </html>

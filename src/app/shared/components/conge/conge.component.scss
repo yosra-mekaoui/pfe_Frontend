@@ -1,3 +1,13 @@
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #86bc24;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .conge-container {
   max-width: 1500px;
   margin: 0 auto;
@@ -306,4 +316,29 @@ a.download-link i {
   padding: 10px;
   color: #999;
 }
+.btn {
+  padding: 5px 10px;
+margin-right: 5px; /* Espace entre les boutons */
+border: none;
+cursor: pointer;
+display: inline-block;
+background-color: #86bc24; /* Green */
+border-color: #86bc24; /* Green */
+color: #ffffff; /* White */
+}
+.btn-primary {
+  background-color: #86bc24;
+  color: white;
+}
 
+.btn-primary:hover {
+  background-color: #86bc24;
+}
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+.btn-danger:hover {
+  background-color: #dc3545;
+
+}

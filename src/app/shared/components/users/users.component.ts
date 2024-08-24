@@ -74,25 +74,25 @@ export class UsersComponent implements OnInit {
       }
     );
   }
-  deleteUser(id: string): void {
-    if (!id) {
+  deleteUser(_id: any): void {
+    console.log('Attempting to delete user with ID:', _id);
+    if (!_id) {
       console.error('No user ID provided for delete');
       return;
     }
-    if(confirm('Are you sure you want to delete this user?')) {
-      this.http.delete(`${this.baseUrl}/users/${id}`).subscribe(() => {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.http.delete(`${this.baseUrl}/users/${_id}`).subscribe(() => {
         alert('User deleted successfully');
         this.loadUsers();
-        this.http.get(`${this.baseUrl}/users`);
       }, (error) => {
-        
         console.error('Error deleting user', error);
         alert('An error occurred. Please try again later.');
-    });
+      });
+    }
   }
-}
+  
 
-    updateUser(id: string ): void {
+    updateUser(id: any ): void {
       this.editingUserId = id;
       const user = this.users.find((user) => user._id === id);
       if (user) {

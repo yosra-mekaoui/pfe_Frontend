@@ -1,3 +1,4 @@
+<div class="container">
 <div class="teletravail-container" *ngIf="isStaffRole">
     <h1>Telework request</h1>
     <form (ngSubmit)="onSubmit()" [formGroup]="teletravailForm">
@@ -49,7 +50,7 @@
   </table>
 </div>
 </div>
-<div class="tableauManager" *ngIf="isManagerRole">
+<div  *ngIf="isManagerRole">
   <h1>Pending teleworks Requests for Your Team</h1>
   <table class="table table-bordered">
     <thead>
@@ -101,7 +102,7 @@
     </tbody>
   </table>
 </div>
-<div class="tableauRh" *ngIf="isRhRole">
+<div  *ngIf="isRhRole">
   <div class="search-bar">
     <input type="text" [(ngModel)]="searchTerm" placeholder="Search by staff name" (keyup)="search()">
   </div>
@@ -131,6 +132,6 @@
       </tbody>
     </table>
   </div>
-  
+</div>
 </div>
 

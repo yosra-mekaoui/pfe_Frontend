@@ -33,6 +33,7 @@ import { BacklogDetailComponent } from './shared/components/backlog-detail/backl
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddProjectComponent } from './shared/components/add-project/add-project.component';
 import { TaskBoardComponent } from './shared/components/task-board/task-board.component';
+import { ScrapingService } from './shared/services/scraping.service';
 @NgModule({
   declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent, PowerBiReportComponent, UserDetailComponent,RefreshComponent,ProjectListComponent,ProjectDetailComponent,TaskListComponent,TaskDetailComponent,BacklogListComponent,BacklogDetailComponent,AddProjectComponent,TaskBoardComponent],
   imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatDialogModule,
@@ -41,7 +42,7 @@ import { TaskBoardComponent } from './shared/components/task-board/task-board.co
   ],
 
   providers: [
-    AuthService,
+    AuthService,ScrapingService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     UserService
   ],
