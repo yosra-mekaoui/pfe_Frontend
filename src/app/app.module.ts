@@ -34,10 +34,22 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddProjectComponent } from './shared/components/add-project/add-project.component';
 import { TaskBoardComponent } from './shared/components/task-board/task-board.component';
 import { ScrapingService } from './shared/services/scraping.service';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { SearchComponent } from './shared/components/search/search.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent, PowerBiReportComponent, UserDetailComponent,RefreshComponent,ProjectListComponent,ProjectDetailComponent,TaskListComponent,TaskDetailComponent,BacklogListComponent,BacklogDetailComponent,AddProjectComponent,TaskBoardComponent],
+  declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, ShellComponent,TeletravailComponent,ProfileComponent,CongeComponent, UsersComponent, PowerBiReportComponent, UserDetailComponent,RefreshComponent,ProjectListComponent,ProjectDetailComponent,TaskListComponent,TaskDetailComponent,BacklogListComponent,BacklogDetailComponent,AddProjectComponent,TaskBoardComponent,SearchComponent],
   imports: [BrowserModule, AppRoutingModule,    FeatherModule.pick(allIcons), HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MatDialogModule,
     DragDropModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatDialogModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
 
   ],
 

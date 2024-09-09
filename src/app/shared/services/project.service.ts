@@ -34,7 +34,7 @@ export class ProjectService {
   }
 
   updateProject(id: string, project: Project): Observable<Project> {
-    return this.http.put<Project>(`${this.apiUrl}/${id}`, project);
+    return this.http.put<Project>(`${this.apiUrl}/${id}`, project,{ headers: this.getHeaders() });
   }
 
   deleteProject(id: string): Observable<void> {

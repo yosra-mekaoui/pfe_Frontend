@@ -1,66 +1,110 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TaskService } from '../../services/task.service';
+import { ProjectService } from '../../services/project.service';
+import { Task } from '../../models/tasks.model';
+import { Project } from '../../models/project.model';
 import { transferArrayItem,moveItemInArray } from '@angular/cdk/drag-drop';
-
-interface Task {
-  id: number;
-  title: string;
-}
-
-interface TaskColumns {
-  [key: string]: Task[]; // Signature d'index pour permettre l'accès par des chaînes de caractères
-}
 
 @Component({
   selector: 'app-task-board',
   templateUrl: './task-board.component.html',
   styleUrls: ['./task-board.component.scss'],
 })
-export class TaskBoardComponent {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+export class TaskBoardComponent implements OnInit {
+  @Input() projectId!: string;
+  projects: Project[] = []; // List of all projects
+  selectedProjectId: string = ''; // ID of the selected project
+  selectedProjectDescription: string = '';
+  selectedProjectStartDate: string = '';
+  selectedProjectEndDate: string = '';
+
+  tasks: { [key: string]: Task[] } = {
+    'To Do': [],
+    'In Progress': [],
+    'Done': []
+  };
   
-  progress = [];
-  
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-  
-  drop(event: any) {
+  constructor(private taskService: TaskService, private projectService: ProjectService) {}
+
+  ngOnInit(): void {
+    this.loadProjects();
+  }
+
+  loadProjects(): void {
+  this.projectService.getProjects().subscribe((projects: Project[]) => {
+    this.projects = projects;
+    if (projects.length > 0) {
+      this.selectedProjectId = projects[0]?._id || ''; // Set the first project as default
+      this.loadTasks(this.selectedProjectId);
+    }
+  });
+}
+loadTasks(projectId: string): void {
+  this.taskService.getTasksForProject(projectId).subscribe((tasks: Task[]) => {
+    this.tasks['To Do'] = [];
+    this.tasks['In Progress'] = [];
+    this.tasks['Done'] = [];
+    
+    tasks.forEach(task => {
+      this.tasks[task.Status].push(task);
+    });
+
+    const selectedProject = this.projects.find(project => project._id === projectId);
+
+    if (selectedProject) {
+      this.selectedProjectDescription = selectedProject.Description;
+    
+      this.selectedProjectStartDate = new Date(selectedProject.StartDate).toLocaleDateString();
+      this.selectedProjectEndDate = new Date(selectedProject.EndDate).toLocaleDateString(); // Make sure this line is executed
+    }
+  });
+}
+  onProjectChange(event: any): void {
+    const selectedProjectId = event.target.value;
+    this.loadTasks(selectedProjectId);
+  }
+  drop(event: any): void {
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+
+      const movedTask = event.container.data[event.currentIndex];
+      const newStatus = this.getNewStatus(event.container.id);
+      this.updateTaskStatus(movedTask, newStatus);
     }
   }
 
-  columns = ['To Do', 'In Progress', 'Completed'];
-  tasks: TaskColumns = {
-    'To Do': [
-      { id: 1, title: 'Task 1' },
-      { id: 2, title: 'Task 2' },
-    ],
-    'In Progress': [{ id: 3, title: 'Task 3' }],
-    Completed: [{ id: 4, title: 'Task 4' }],
-  };
+  getNewStatus(containerId: string): 'To Do' | 'In Progress' | 'Done' {
+    switch (containerId) {
+      case 'cdk-drop-list-0':
+        return 'To Do';
+      case 'cdk-drop-list-1':
+        return 'In Progress';
+      case 'cdk-drop-list-2':
+        return 'Done';
+      default:
+        return 'To Do';
+    }
+  }
 
-  // drop(event: CdkDragDrop<Task[]>): void {
-  //   const previousContainer = event.previousContainer;
-  //   const currentContainer = event.container;
+  updateTaskStatus(task: Task, newStatus: 'To Do' | 'In Progress' | 'Done'): void {
+    task.Status = newStatus;
+    console.log('Status to update:', newStatus);
+    if (task._id) {
+      this.taskService.updateTask(task._id, newStatus).subscribe({
+        next: updatedTask => {
+          console.log('Task updated successfully:', updatedTask);
+        },
+        error: err => {
+          console.error('Error updating task:', err);
+        }
+      });
+    } else {
+      console.error("Task ID is undefined");
+    }
+  }
+  
+  
 
-  //   if (previousContainer === currentContainer) {
-  //     return;
-  //   }
-
-  //   // Remove the item from the previous container
-  //   const item = event.item.data;
-  //   previousContainer.data.splice(event.previousIndex, 1);
-  //   // Add the item to the current container
-  //   currentContainer.data.splice(event.currentIndex, 0, item);
-  // }
 }

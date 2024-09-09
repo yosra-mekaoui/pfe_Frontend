@@ -36,12 +36,28 @@ export class ProjectListComponent implements OnInit {
       this.filteredProjects = projects;
     });
   }
+  toggleTaskView(projectId: string): void {
+    this.filteredProjects = this.filteredProjects.map(project => {
+      if (project._id === projectId) {
+        project.showTasks = !project.showTasks;
+      }
+      return project;
+    });
+  }
   getTeamMemberNames(members: User[]): string {
     return members.map(member => `${member.firstName} ${member.lastName}`).join(', ');
   }
+  // getTask(tasks: Task[]): string {
+  //   return tasks.map(task => `${task.Title} ${task.Priority}`).join(', ');
+  // }
   getTask(tasks: Task[]): string {
-    return tasks.map(task => `${task.Title} ${task.Priority}`).join(', ');
+    const maxTasksToShow = 4;
+    const tasksToShow = tasks.slice(0, maxTasksToShow);
+    const taskDisplay = tasksToShow.map(task => `${task.Title} ${task.Priority}`).join(', ');
+    
+    return tasks.length > maxTasksToShow ? `${taskDisplay}, ...` : taskDisplay;
   }
+  
   onStatusFilterChange(event: any): void {
     const status = event.target.value;
     this.filteredProjects = this.projects.filter(project => 

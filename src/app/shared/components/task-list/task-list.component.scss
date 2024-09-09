@@ -1,16 +1,113 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 100px;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid #86bc24;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 1500px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #86bc24;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.project-dashboard {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .mat-expansion-panel {
+      margin-bottom: 10px;
+    }
+  
+    .task-details {
+      padding: 10px;
+    }
+  
+    .btn {
+      margin-right: 10px;
+    }
   }
   
-  h1 {
-    color: #1d1d1b; /* Noir */
-    text-align: center;
-    margin-bottom: 20px;
+  .task-title {
+    color: #28a745; /* Couleur pour le titre de la tâche */
+    font-weight: bold;
   }
+  
+  .project-name {
+    color: #28a745; /* Couleur pour le nom du projet */
+    font-style: bold;
+  }
+  
+.task-dashboard {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.task-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+}
+
+.task-card h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.task-card p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.95em;
+}
+
+.btn {
+  padding: 5px 10px;
+  margin-right: 5px; /* Space between buttons */
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: #86bc24; /* Green */
+  border-color: #86bc24; /* Green */
+  color: #ffffff; /* White */
+}
+
+.btn-primary {
+  background-color: #86bc24;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #86bc24;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc3545;
+}
+
+.btn-warning {
+  background-color: #0f07ff;
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #0f07ff;
+}

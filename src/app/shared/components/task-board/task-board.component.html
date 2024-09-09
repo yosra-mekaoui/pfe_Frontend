@@ -1,4 +1,32 @@
 <div class="container">
+  <div class="project-dashboard">
+    <h1>Task Board</h1>
+  <div class="project-filter">
+    <label for="projectSelect">Select Project:</label>
+    <select id="projectSelect" (change)="onProjectChange($event)">
+      <option *ngFor="let project of projects" [value]="project._id">{{ project.Name }}</option>
+    </select>
+  </div>
+  <div class="project-details" *ngIf="selectedProjectDescription">
+    <h3>Project Details</h3>
+    <div class="detail-item">
+      <span class="detail-label">Description:</span>
+      <span class="detail-value">{{ selectedProjectDescription }}</span>
+    </div>
+    <div class="date-container">
+      <div class="detail-item">
+        <span class="detail-label">Start Date:</span>
+        <span class="detail-value">{{ selectedProjectStartDate }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">End Date:</span>
+        <span class="detail-value">{{ selectedProjectEndDate }}</span>
+      </div>
+    </div>
+  </div>
+  
+  
+  
   <div class="task-board">
     <div class="column">
       <h2>To Do</h2>
@@ -6,47 +34,61 @@
         class="task-list"
         cdkDropList
         #todoList="cdkDropList"
-        [cdkDropListData]="todo"
-        [cdkDropListConnectedTo]="[doneList,progressList]"
+        [cdkDropListData]="tasks['To Do']"
+        [cdkDropListConnectedTo]="[progressList, doneList]"
         (cdkDropListDropped)="drop($event)"
-        class="example-list"
       >
-        <div *ngFor="let item of todo" cdkDrag class="task">
-          {{ item }}
+        <div *ngFor="let task of tasks['To Do']" cdkDrag class="task">
+          <div class="task-content">
+            <h3>{{ task.Title }}</h3>
+            <p>{{ task.Description }}</p>
+            <span class="detail-label">Assigned To:</span><p>{{task.assignedTo}}</p>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="column">
       <h2>In Progress</h2>
       <div
         class="task-list"
         cdkDropList
         #progressList="cdkDropList"
-        [cdkDropListData]="progress"
-        [cdkDropListConnectedTo]="[todoList,doneList]"
+        [cdkDropListData]="tasks['In Progress']"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
         (cdkDropListDropped)="drop($event)"
-        class="example-list"
       >
-        <div *ngFor="let item of progress" cdkDrag class="task">
-          {{ item }}
+        <div *ngFor="let task of tasks['In Progress']" cdkDrag class="task">
+          <div class="task-content">
+            <h3>{{ task.Title }}</h3>
+            <p>{{ task.Description }}</p>
+            <span class="detail-label">Assigned To:</span><p>{{task.assignedTo}}</p>
+
+          </div>
         </div>
       </div>
     </div>
+
     <div class="column">
       <h2>Done</h2>
       <div
         class="task-list"
         cdkDropList
         #doneList="cdkDropList"
-        [cdkDropListData]="done"
-        [cdkDropListConnectedTo]="[todoList,progressList]"
+        [cdkDropListData]="tasks['Done']"
+        [cdkDropListConnectedTo]="[todoList, progressList]"
         (cdkDropListDropped)="drop($event)"
-        class="example-list"
       >
-        <div *ngFor="let item of done" cdkDrag class="task">
-          {{ item }}
+        <div *ngFor="let task of tasks['Done']" cdkDrag class="task">
+          <div class="task-content">
+            <h3>{{ task.Title }}</h3>
+            <p>{{ task.Description }}</p>
+            <span class="detail-label">Assigned To:</span><p>{{task.assignedTo?.firstName}} {{task.assignedTo?.lastName}}</p>
+
+          </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

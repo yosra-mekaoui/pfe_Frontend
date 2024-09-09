@@ -16,6 +16,7 @@ import { TaskDetailComponent } from './shared/components/task-detail/task-detail
 import { BacklogListComponent } from './shared/components/backlog-list/backlog-list.component';
 import { BacklogDetailComponent } from './shared/components/backlog-detail/backlog-detail.component';
 import { TaskBoardComponent } from './shared/components/task-board/task-board.component';
+import { SearchComponent } from './shared/components/search/search.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'backlogs', component: BacklogListComponent },
       { path: 'backlogs/:id', component: BacklogDetailComponent },
       { path: 'project/edit/:id', component: AddProjectComponent },
-      { path: 'taskboard', component: TaskBoardComponent }
+      { path: 'taskboard', component: TaskBoardComponent },
+      { path: 'search', component: SearchComponent },
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

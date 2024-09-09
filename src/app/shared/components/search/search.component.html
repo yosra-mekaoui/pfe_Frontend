@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="search-bar">
+        <h1>LinkedIn Search</h1>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          placeholder="Enter a search term..." 
+          class="search-input"
+        />
+        <button (click)="search()" class="search-button">Search</button>
+    </div>
+    
+    <div *ngIf="results.length > 0">
+        <h2>Search Results:</h2>
+        <ul class="results-list">
+          <li *ngFor="let profile of results" class="profile-item">
+            <div class="profile-info">
+              <img [src]="profile.image" alt="{{ profile.name }}" class="profile-image" />
+              <div class="profile-details">
+                <h3>{{ profile.name }}</h3>
+                <p><strong>Job Title:</strong> {{ profile.jobTitle }}</p>
+                <p><strong>Summary:</strong> {{ profile.summary }}</p>
+                <p><strong>Company:</strong> {{ profile.company }}</p>
+                <p><strong>Location:</strong> {{ profile.location }}</p>
+                <a [href]="profile.url" target="_blank" class="profile-link">View LinkedIn Profile</a>
+              </div>
+            </div>
+            <hr class="divider" />
+          </li>
+        </ul>
+    </div>
+    
+    <div *ngIf="results.length === 0 && searchTerm">
+        <p class="no-results">Aucun résultat trouvé pour "{{ searchTerm }}"</p>
+    </div>
+</div>

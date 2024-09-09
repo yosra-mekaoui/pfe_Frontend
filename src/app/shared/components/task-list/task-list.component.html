@@ -1,8 +1,31 @@
 <div class="container">
-    <h1>Task List</h1>
-<ul>
-  <li *ngFor="let task of tasks">
-    <a [href]="['/tasks', task._id]">{{ task.Title }}</a>
-  </li>
-</ul>
+  <div class="project-dashboard">
+    <label for="projectFilter">Filter by Project:</label>
+    <select id="projectFilter" (change)="onProjectFilterChange($event)">
+      <option value="">All Projects</option>
+      <option *ngFor="let project of projects" [value]="project._id">{{ project.Name }}</option>
+    </select>
+    
+    <mat-accordion *ngIf="filteredTasks.length > 0">
+      <mat-expansion-panel *ngFor="let task of filteredTasks">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Task Title:<span class="task-title"> {{ task.Title }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Project Name:<span class="project-name"> {{ task.project?.Name }}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="task-details">
+          <p>Description: {{ task.Description }}</p>
+          <p>Status: {{ task.Status }}</p>
+          <p>Priority: {{ task.Priority }}</p>
+          <p>Assigned To: {{ task.assignedTo?.firstName }} {{ task.assignedTo?.lastName }}</p>
+          <p>Created By: {{ task.createdBy?.firstName }} {{ task.createdBy?.lastName }}</p>
+          <p>Start Date: {{ task.StartDate | date }}</p>
+          <p>Due Date: {{ task.DueDate | date }}</p>
+          <button class="btn btn-warning" [routerLink]="'/dashboard/task/edit/' + task._id">Edit</button>
+          <button class="btn btn-danger" (click)="deleteTask(task._id)">Delete</button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>

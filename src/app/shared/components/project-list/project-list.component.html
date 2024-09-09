@@ -17,21 +17,38 @@
       
         <div class="project-list">
           <div *ngFor="let project of filteredProjects" class="project-card">
-            <h3>{{ project.Name }}</h3>
-            <p>Status: {{ project.Status }}</p>
-            <p>Start Date: {{ project.StartDate | date }}</p>
-            <p>End Date: {{ project.EndDate | date }}</p>
-            <p>Manager: {{ project.manager?.firstName }} {{ project.manager?.lastName }}</p>
-            <p>Team Members: {{ getTeamMemberNames(project.teamMembers) }}</p>
-             <p>Tasks: {{ getTask(project.tasks) }}</p>
-             <button class="btn btn-primary" (click)="openProjectDetail(project)">Detail</button>
+            <div class="card-header">
+              <h3>{{ project.Name }}</h3>
+              <p class="status">{{ project.Status }}</p>
+            </div>
+            <div class="card-body">
+              <p><strong>Start Date:</strong> {{ project.StartDate | date }}</p>
+              <p><strong>End Date:</strong> {{ project.EndDate | date }}</p>
+              <p><strong>Manager:</strong> {{ project.manager?.firstName }} {{ project.manager?.lastName }}</p>
+              <p><strong>Team Members:</strong> {{ getTeamMemberNames(project.teamMembers) }}</p>
+              <p><strong>Tasks:</strong> {{ getTask(project.tasks) }}</p>
+            </div>
+            <div class="btn-container">
+              <button class="btn btn-primary" (click)="openProjectDetail(project)">Detail</button>
               <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
               <button class="btn btn-warning" [routerLink]="'/dashboard/project/edit/'+project._id">Edit</button>
-
-
-
+              <button class="btn btn-info" (click)="toggleTaskView(project._id)">Tasks</button>
+            </div>
+            <div *ngIf="project.showTasks" class="tasks-container">
+              <h4>Tasks for Project "{{ project.Name }}"</h4>
+              <ul>
+                <li *ngFor="let task of project.tasks.slice(0, 4)">                  <div class="task-card">
+                    <h5>{{ task.Title }}</h5>
+                    <p><strong>Description:</strong> {{ task.Description }}</p>
+                    <p><strong>Status:</strong> {{ task.Status }}</p>
+                    <p><strong>Priority:</strong> {{ task.Priority }}</p>
+                    <p><strong>Start Date:</strong> {{ task.StartDate | date }}</p>
+                    <p><strong>Due Date:</strong> {{ task.DueDate | date }}</p>
+                  </div>
+                  <li *ngIf="project.tasks.length > 4">
+                  </ul>
+            </div>
           </div>
         </div>
       </div>
-      
-</div>
+    </div>

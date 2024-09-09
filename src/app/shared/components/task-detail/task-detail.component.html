@@ -5,8 +5,8 @@
     <p>Status: {{ task.Status }}</p>
     <p>Start Date: {{ task.StartDate | date }}</p>
     <p>Due Date: {{ task.DueDate | date }}</p>
-    <p>Assigned To: {{ task.assignedTo }}</p>
-    <p>Created By: {{ task.createdBy }}</p>
+    <p>Assigned: {{ task.assignedTo }} </p>
+    <p>Created By: {{ task.createdBy }} </p>
     <button (click)="deleteTask()">Delete Task</button>
   </div>
   
